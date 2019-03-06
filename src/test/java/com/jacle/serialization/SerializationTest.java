@@ -1,6 +1,7 @@
 package com.jacle.serialization;
 
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -44,6 +45,14 @@ public class SerializationTest
 
         //关闭流
         outputStream.close();
+        System.out.println("序列化数据的长度："+serialBytes.length);
         System.out.println(demo2);
+
+        //将protoc对象变为json格式
+        String demoStr=JsonFormat.printer().print(demo2);
+        System.out.println(demoStr);
+        System.out.println("jsonStr长度:"+demoStr.getBytes().length);
+
+        //json的长度一般是protoc二进制长度的三倍左右
     }
 }
