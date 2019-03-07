@@ -54,5 +54,21 @@ public class SerializationTest
         System.out.println("jsonStr长度:"+demoStr.getBytes().length);
 
         //json的长度一般是protoc二进制长度的三倍左右
+
+        //RPC中为了解决分包、拆包的问题，会将包的字节的长度，添加到字节数组的开头
+        ByteArrayOutputStream outps=new ByteArrayOutputStream();
+        demo2.writeDelimitedTo(outps);
+
+        //长度比序列化的长度多一个，多的那一个就是序列化二进制字节数组的长度
+        //RPC中使用这个方法的比较多
+        System.out.println(outps.toByteArray().length);
+        System.out.println(demo.toByteArray().length);
+
+        for(byte b:outps.toByteArray())
+        {
+            System.out.print(b);
+        }
+        outps.close();
+
     }
 }
