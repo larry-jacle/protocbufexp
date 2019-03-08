@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package serialization;
+
+option java_multiple_files = true;
+option java_package = "com.jacle.serialization";
+option java_outer_classname = "HelloWorldProto";
+
+message HelloRequest {
+    //rpc的方法的参数
+    string name = 1;
+}
+
+message HelloReply {
+    //rpc返回的数据
+    string message = 1;
+}
+
+//rpc处理类
+service Greeter
+{
+    rpc sayHello(HelloRequest) returns (HelloReply) {}
+}
