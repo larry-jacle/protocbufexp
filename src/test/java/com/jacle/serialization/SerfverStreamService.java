@@ -13,6 +13,7 @@ public class SerfverStreamService extends GreeterServerStreamGrpc.GreeterServerS
 
     @Override
     public StreamObserver<HelloRequestServerStream> sayHello(StreamObserver<HelloReplyServerStream> responseObserver) {
+
         //返回一个reply
         return new StreamObserver<HelloRequestServerStream>() {
             private StringBuffer buffer=new StringBuffer();
