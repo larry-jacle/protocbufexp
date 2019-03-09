@@ -9,23 +9,21 @@ import java.util.logging.Logger;
 
 /**
  * grpc客户端代码
- *
- * grpc的第一种通信方式：simple，一个请求，一个响应；
  */
-public class GreetClient
+public class GreetClient2
 {
     public static final Logger logger = Logger.getLogger(GreetService.class.getName());
 
     private final ManagedChannel channel;
     private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
-    public GreetClient(ManagedChannel channel) {
+    public GreetClient2(ManagedChannel channel) {
         this.channel = channel;
         // 获得stub
         this.blockingStub = GreeterGrpc.newBlockingStub(channel);
     }
 
-    public GreetClient(String host, int port) {
+    public GreetClient2(String host, int port) {
         // 创建channel
         this (ManagedChannelBuilder.forAddress(host, port).usePlaintext(true).build());
     }
@@ -48,9 +46,9 @@ public class GreetClient
 
 
     public static void main(String[] args) throws InterruptedException {
-        GreetClient client = new GreetClient("localhost", 50051);
+        GreetClient2 client = new GreetClient2("localhost", 50051);
         try {
-            client.greet("world");
+            client.greet("client2");
         } finally {
             client.shutdown();
         }
